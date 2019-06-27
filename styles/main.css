@@ -123,8 +123,8 @@ hr {
   width: 120px;
 }
 
-.r-float {
-	/* float: right; */
+.hide {
+	display: hidden;
 }
 span {
 

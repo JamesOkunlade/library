@@ -14,6 +14,7 @@ function windowOnClick(event) {
     }
 }
 
+
 trigger.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
@@ -39,16 +40,16 @@ class Store {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
-  // static removeBook() {
-  //   const myLibrary = Store.getBooks();
-  //
-  //   myLibrary.forEach((book, index) => {
-  //     if (myLibrary.indexOf(book) === index) {
-  //       myLibrary.splice(index, 1);
-  //     }
-  //   });
-  //   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  // }
+  static removeBook(ind) {
+    const myLibrary = Store.getBooks();
+
+    myLibrary.forEach((book, index) => {
+      if (myLibrary.indexOf(book) == ind) {
+        myLibrary.splice(index, 1);
+      }
+    });
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  }
 
 }
 
@@ -66,6 +67,10 @@ function Book(title, author, pages) {
   this.author = author;
   this.pages = pages;
 }
+
+Book.prototype.sn = function () {
+
+};
 
 
 
@@ -114,11 +119,17 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
             </div>
             <hr>
             <div class="meta">
-              <h6 id="">Title: ${book.title}</h6>
-              <p id="">Author: ${book.author}</p>
-              <p id="">Pages: ${book.pages}</p>
+              <h6>Title: ${book.title}</h6>
+              <p>Author: ${book.author}</p>
+              <p>Pages: ${book.pages}</p>
+
             </div>
-            <span class=""><a href="#" class="delete">delete</a><span>
+            <div>
+              <p class="hide">${myLibrary.indexOf(book)}</p>
+            </div>
+            <span>
+              <a href="#" class="delete">delete</a>
+            <span>
           </div>
         </div>
         `;
@@ -133,7 +144,9 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
 /// Deleting books
 document.querySelector('#shelf').addEventListener('click', function(e) {
   if (e.target.classList.contains('delete')) {
-    e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.parentElement.remove();
+    console.log(e.target.parentElement.previousElementSibling.textContent);
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
   }
 })
 
@@ -141,4 +154,6 @@ document.querySelector('#shelf').addEventListener('click', function(e) {
 
 /// Calls
 document.addEventListener('DOMContentLoaded', render());
-console.log(myLibrary);
+// for (var i = 0; i < myLibrary.length; i++) {
+//   console.log(myLibrary.indexOf(myLibrary[i]));
+// }
