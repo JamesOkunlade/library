@@ -40,6 +40,15 @@ class Store {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
+  static toggleRead(book) {
+    const myLibrary = Store.getBooks();
+    myLibrary.forEach(
+      // if (true) {
+      //   // Do this
+      // }
+    )
+  }
+
   static removeBook(ind) {
     const myLibrary = Store.getBooks();
 
@@ -71,7 +80,7 @@ function Book(title, author, pages, read) {
 
 
 // The book protoype i.e methods that will be available for instances of Book
-Book.prototype.toggleRead = function () {
+Book.prototype.toggle = function () {
   if (this.read === true) {
     this.read = false;
   }else {
@@ -124,12 +133,13 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
           <div id="book" class="book">
             <div id="cast" class="cast">
               <span id="status">
-                <label class="switch">
-                <input type="checkbox" ${status}>
+                <label>
+                <input class="switch" type="checkbox" ${status}>
                 <span class="slider round">Read</span>
                 </label>
               </span>
             </div>
+
             <hr>
             <div class="meta">
               <h6>Title: ${book.title}</h6>
@@ -148,26 +158,21 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
 
         books.appendChild(row);
 
-
-        // const cast = document.querySelector('#cast');
-        // const status = document.createElement('span');
-        // status.innerHTML = `
-        //   <label class="switch">
-        //   <input type="checkbox" checked>
-        //   <span class="slider round">Read</span>
-        //   </label>
-        // `;
-        // cast.appendChild(status);
-
-
-
-
-
-
       }
     )
 
   }
+
+  /// Changing the read status of a book
+  document.querySelector('#shelf').addEventListener('click', function(e){
+    if (e.target.classList.contains('switch')) {
+        console.log(typeof(e.target));
+        console.log(e.target.parentElement.parentElement.nextSibling.nodeName);
+
+        // Store.toggleRead();
+
+    }
+  });
 
 
 /// Deleting books
@@ -183,8 +188,8 @@ document.querySelector('#shelf').addEventListener('click', function(e) {
 
 /// Calls
 document.addEventListener('DOMContentLoaded', render());
-for (var i = 0; i < myLibrary.length; i++) {
-  let book = myLibrary[i];
-  // book = book.toggleRead();
-  console.log(book.title, book.read);
-}
+// for (var i = 0; i < myLibrary.length; i++) {
+//   let book = myLibrary[i];
+//   // book = book.toggleRead();
+//   console.log(book.title, book.read);
+// }
