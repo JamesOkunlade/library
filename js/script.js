@@ -14,7 +14,6 @@ function windowOnClick(event) {
     }
 }
 
-
 trigger.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
@@ -40,13 +39,15 @@ class Store {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
-  static toggleRead(book) {
+  static toggleRead(ind) {
     const myLibrary = Store.getBooks();
-    myLibrary.forEach(
-      // if (true) {
-      //   // Do this
-      // }
-    )
+    myLibrary.forEach((book, index) => {
+      if (myLibrary.indexOf(book) == ind) {
+        book.read = book.read === true ? false : true;
+      }
+    });
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
   }
 
   static removeBook(ind) {
@@ -77,16 +78,6 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-
-
-// The book protoype i.e methods that will be available for instances of Book
-Book.prototype.toggle = function () {
-  if (this.read === true) {
-    this.read = false;
-  }else {
-    this.read = true;
-  }
-};
 
 // Validates and takes book from form and adds it to myLibrary array.
 function addBookToLibrary(title, author, pages, read) {
@@ -134,12 +125,14 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
             <div id="cast" class="cast">
               <span id="status">
                 <label>
+                <div class="hide">
+                  <p>${myLibrary.indexOf(book)}</p>
+                </div>
                 <input class="switch" type="checkbox" ${status}>
                 <span class="slider round">Read</span>
                 </label>
               </span>
             </div>
-
             <hr>
             <div class="meta">
               <h6>Title: ${book.title}</h6>
@@ -157,20 +150,14 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
         `;
 
         books.appendChild(row);
-
       }
     )
-
   }
 
   /// Changing the read status of a book
   document.querySelector('#shelf').addEventListener('click', function(e){
     if (e.target.classList.contains('switch')) {
-        console.log(typeof(e.target));
-        console.log(e.target.parentElement.parentElement.nextSibling.nodeName);
-
-        // Store.toggleRead();
-
+        Store.toggleRead(e.target.previousElementSibling.textContent);
     }
   });
 
@@ -188,8 +175,3 @@ document.querySelector('#shelf').addEventListener('click', function(e) {
 
 /// Calls
 document.addEventListener('DOMContentLoaded', render());
-// for (var i = 0; i < myLibrary.length; i++) {
-//   let book = myLibrary[i];
-//   // book = book.toggleRead();
-//   console.log(book.title, book.read);
-// }
