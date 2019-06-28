@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
+
+    <!-- Header and navigation -->
     <header>
       <nav class="">
         <div class="logo">
@@ -24,22 +26,24 @@
       </nav>
     </header>
     <div class="main-content">
-      
+
+      <!-- Library section starts here -->
       <div id="library" class="library">
         <h4>Explore</h4>
         <hr>
-
-
         <div id="shelf" class="shelf">
           <!-- Books load here from the script-->
         </div>
-
       </div>
 
+
+      <!-- Floating new book button -->
       <div id="add-new" class="add-new">
         <button type="button" name="button" class="trigger float fa fa-plus my-float"> New book</button>
       </div>
 
+
+      <!-- New book form modal -->
       <div class="modal">
         <div class="modal-content">
             <div class="close-button">&times;</div>
@@ -55,20 +59,18 @@
                   <input id="read" type="checkbox">
                   <span class="slider round">Read</span>
                   </label>
-                <span>
+                </span>
                 <button type="submit" name="button">Add</button>
               </form>
             </div>
-
         </div>
       </div>
 
 
 
     </div>
-
   </body>
-  <script type="text/javascript" src="scripts/script.js">
+  <script src="js/script.js">
   </script>
 
 </html>

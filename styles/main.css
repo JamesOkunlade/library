@@ -294,18 +294,19 @@ button {
 
 		@media (max-width: 768px) {
 
+
+			body {
+			  font-weight: 300;
+			  line-height: 1.5;
+			  font-size: 75%;
+			}
+
 			/* The library section stlying */
 
 			.library {
-
 			  padding-top: 70px;
 			}
 
-			.catalogue {
-			  width: 50%;
-			  margin: 20px auto;
-				padding: 1px;
-			}
 
 			button {
 			  width: 100%;
@@ -325,7 +326,16 @@ button {
 			.book {
 			  height: 300px;
 			}
+		}
+		
+		@media (max-width: 1024px) {
+			body {
+			  font-size: 85%;
+			}
 
-
+			.shelf {
+			  width: 90%;
+			  padding: 5px;
+			}
 
 		}
