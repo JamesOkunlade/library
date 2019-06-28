@@ -36,7 +36,7 @@ class Store {
 
   static addBook(book) {
     const myLibrary =  Store.getBooks();
-    myLibrary.push(book);
+    myLibrary.unshift(book);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
@@ -62,34 +62,42 @@ let myLibrary = Store.getBooks();
 
 // The constructor for creating book
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = read;
 }
 
 
-// Takes book from form and adds it to myLibrary array.
-function addBookToLibrary(title, author, pages) {
+// The book protoype i.e methods that will be available for instances of Book
+Book.prototype.toggleRead = function () {
+  if (this.read === true) {
+    this.read = false;
+  }else {
+    this.read = true;
+  }
+};
+
+// Validates and takes book from form and adds it to myLibrary array.
+function addBookToLibrary(title, author, pages, read) {
     if (title === '' || author === '' || pages === '') {
       alert('Please fill in all fields');
     }else {
-      const book = new Book(title, author, pages);
+      const book = new Book(title, author, pages, read);
       Store.addBook(book)
       clear();
-      alert('Book added!!!')
-
     }
   }
 
 
 document.querySelector('#book-form').addEventListener('submit', function(e)
 {
-  e.preventDefault();
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
   const pages = document.querySelector('#pages').value;
-  addBookToLibrary(title, author, pages);
+  const read = document.querySelector('#read').checked? true : false;
+  addBookToLibrary(title, author, pages, read);
 });
 
 
@@ -108,15 +116,16 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
     myLibrary = Store.getBooks();
     myLibrary.forEach(
       function(book) {
+        const status = book.read? "checked" : "";
         const books = document.querySelector('#shelf');
         const row = document.createElement('div');
         row.innerHTML = `
         <div class="box">
           <div id="book" class="book">
             <div id="cast" class="cast">
-              <span>
+              <span id="status">
                 <label class="switch">
-                <input type="checkbox" >
+                <input type="checkbox" ${status}>
                 <span class="slider round">Read</span>
                 </label>
               </span>
@@ -138,6 +147,23 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
         `;
 
         books.appendChild(row);
+
+
+        // const cast = document.querySelector('#cast');
+        // const status = document.createElement('span');
+        // status.innerHTML = `
+        //   <label class="switch">
+        //   <input type="checkbox" checked>
+        //   <span class="slider round">Read</span>
+        //   </label>
+        // `;
+        // cast.appendChild(status);
+
+
+
+
+
+
       }
     )
 
@@ -157,3 +183,8 @@ document.querySelector('#shelf').addEventListener('click', function(e) {
 
 /// Calls
 document.addEventListener('DOMContentLoaded', render());
+for (var i = 0; i < myLibrary.length; i++) {
+  let book = myLibrary[i];
+  // book = book.toggleRead();
+  console.log(book.title, book.read);
+}
