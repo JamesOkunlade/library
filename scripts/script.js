@@ -68,11 +68,6 @@ function Book(title, author, pages) {
   this.pages = pages;
 }
 
-Book.prototype.sn = function () {
-
-};
-
-
 
 // Takes book from form and adds it to myLibrary array.
 function addBookToLibrary(title, author, pages) {
@@ -81,6 +76,9 @@ function addBookToLibrary(title, author, pages) {
     }else {
       const book = new Book(title, author, pages);
       Store.addBook(book)
+      clear();
+      alert('Book added!!!')
+
     }
   }
 
@@ -96,12 +94,12 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
 
 
 
-  // Clearing the form
-  // function clear() {
-  //   document.querySelector('title').value = '';
-  //   document.querySelector('author').value = '';
-  //   document.querySelector('pages').value = '';
-  // }
+  // Clearing the form input fields
+  function clear() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#pages').value = '';
+  }
 
 
 /// Loops through each book in the myLibrary array and renders it on the interface
@@ -115,21 +113,26 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
         row.innerHTML = `
         <div class="box">
           <div id="book" class="book">
-            <div class="cast">
+            <div id="cast" class="cast">
+              <span>
+                <label class="switch">
+                <input type="checkbox" >
+                <span class="slider round">Read</span>
+                </label>
+              </span>
             </div>
             <hr>
             <div class="meta">
               <h6>Title: ${book.title}</h6>
               <p>Author: ${book.author}</p>
               <p>Pages: ${book.pages}</p>
-
             </div>
-            <div>
-              <p class="hide">${myLibrary.indexOf(book)}</p>
+            <div class="hide">
+              <p>${myLibrary.indexOf(book)}</p>
             </div>
             <span>
               <a href="#" class="delete">delete</a>
-            <span>
+            </span>
           </div>
         </div>
         `;
@@ -154,6 +157,3 @@ document.querySelector('#shelf').addEventListener('click', function(e) {
 
 /// Calls
 document.addEventListener('DOMContentLoaded', render());
-// for (var i = 0; i < myLibrary.length; i++) {
-//   console.log(myLibrary.indexOf(myLibrary[i]));
-// }

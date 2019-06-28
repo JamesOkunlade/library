@@ -124,16 +124,16 @@ hr {
 }
 
 .hide {
-	display: hidden;
+	display: none;
 }
 span {
-
-	font-size: 10px;
+	font-size: 12px;
 }
 span > a {
 	color: red !important;
-
 }
+
+
 
 /* The navbar styling */
 .logo {
@@ -235,6 +235,7 @@ button {
 	text-align: left;
 }
 .cast {
+	text-align: right;
 	height: 50%;
 	background: linear-gradient(
       53deg,
