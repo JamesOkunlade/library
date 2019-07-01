@@ -168,3 +168,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
        Store.toggleRead(e.target.previousElementSibling.textContent);
    }
  });
+
+
+ // Calls
+document.addEventListener('DOMContentLoaded', render());
