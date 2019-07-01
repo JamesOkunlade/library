@@ -57,6 +57,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
    document.querySelector('#pages').value = '';
  }
 
+
 /// Loops through each book in the myLibrary array and renders it on the interface
  function render() {
    myLibrary = Store.getBooks();
@@ -100,6 +101,16 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
    )
  }
 
+
+ // Deleting books
+ document.querySelector('#shelf').addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete')) {
+    e.target.parentElement.parentElement.parentElement.remove();
+    console.log(e.target.parentElement.previousElementSibling.textContent);
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+  }
+ })
+ 
 
  /// Changing the read status of a book
  document.querySelector('#shelf').addEventListener('click', function(e){
