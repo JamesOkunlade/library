@@ -94,3 +94,11 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
      }
    )
  }
+
+
+ /// Changing the read status of a book
+ document.querySelector('#shelf').addEventListener('click', function(e){
+   if (e.target.classList.contains('switch')) {
+       Store.toggleRead(e.target.previousElementSibling.textContent);
+   }
+ });
