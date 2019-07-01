@@ -49,3 +49,48 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
  const read = document.querySelector('#read').checked? true : false;
  addBookToLibrary(title, author, pages, read);
 });
+
+
+/// Loops through each book in the myLibrary array and renders it on the interface
+
+ function render() {
+   myLibrary = Store.getBooks();
+   myLibrary.forEach(
+     function(book) {
+       const status = book.read? "checked" : "";
+       const books = document.querySelector('#shelf');
+       const row = document.createElement('div');
+       row.innerHTML = `
+       <div class="box">
+         <div id="book" class="book">
+           <div id="cast" class="cast">
+             <span id="status">
+               <label>
+               <div class="hide">
+                 <p>${myLibrary.indexOf(book)}</p>
+               </div>
+               <input class="switch" type="checkbox" ${status}>
+               <span class="slider round">Read</span>
+               </label>
+             </span>
+           </div>
+           <hr>
+           <div class="meta">
+             <h6>Title: ${book.title}</h6>
+             <p>Author: ${book.author}</p>
+             <p>Pages: ${book.pages}</p>
+           </div>
+           <div class="hide">
+             <p>${myLibrary.indexOf(book)}</p>
+           </div>
+           <span>
+             <a href="#" class="delete">delete</a>
+           </span>
+         </div>
+       </div>
+       `;
+
+       books.appendChild(row);
+     }
+   )
+ }
