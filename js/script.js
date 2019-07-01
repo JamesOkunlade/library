@@ -110,7 +110,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
   }
 
 
-/// Loops through each book in the myLibrary array and renders it on the interface
+// Loops through each book in the myLibrary array and renders it on the interface
 
   function render() {
     myLibrary = Store.getBooks();
