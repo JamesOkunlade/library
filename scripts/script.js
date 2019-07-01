@@ -50,9 +50,14 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
  addBookToLibrary(title, author, pages, read);
 });
 
+// Clearing the form input fields
+ function clear() {
+   document.querySelector('#title').value = '';
+   document.querySelector('#author').value = '';
+   document.querySelector('#pages').value = '';
+ }
 
 /// Loops through each book in the myLibrary array and renders it on the interface
-
  function render() {
    myLibrary = Store.getBooks();
    myLibrary.forEach(
