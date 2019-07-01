@@ -19,15 +19,12 @@ closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
 
-/// Library scripts
 
-// let myLibrary = [];
-//
-// function Book() {
-//   // the constructor
-// }
-//
-//
-// function addBookToLibrary() {
-//   // Do this
-// }
+
+// The constructor for creating book
+function Book(title, author, pages, read) {
+ this.title = title;
+ this.author = author;
+ this.pages = pages;
+ this.read = read;
+}
