@@ -28,3 +28,24 @@ function Book(title, author, pages, read) {
  this.pages = pages;
  this.read = read;
 }
+
+// Validates and takes book from form and adds it to myLibrary array.
+function addBookToLibrary(title, author, pages, read) {
+   if (title === '' || author === '' || pages === '') {
+     alert('Please fill in all fields');
+   }else {
+     const book = new Book(title, author, pages, read);
+     Store.addBook(book)
+     clear();
+   }
+ }
+
+
+document.querySelector('#book-form').addEventListener('submit', function(e)
+{
+ const title = document.querySelector('#title').value;
+ const author = document.querySelector('#author').value;
+ const pages = document.querySelector('#pages').value;
+ const read = document.querySelector('#read').checked? true : false;
+ addBookToLibrary(title, author, pages, read);
+});
