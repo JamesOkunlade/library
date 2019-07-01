@@ -20,56 +20,6 @@ window.addEventListener("click", windowOnClick);
 
 
 
-//LocalStorage setup
-
-class Store {
- static getBooks() {
-   let myLibrary;
-   if(localStorage.getItem('myLibrary') === null) {
-     myLibrary = [];
-   } else {
-     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-   }
-   return myLibrary;
- }
-
- static addBook(book) {
-   const myLibrary =  Store.getBooks();
-   myLibrary.unshift(book);
-   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
- }
-
- static toggleRead(ind) {
-   const myLibrary = Store.getBooks();
-   myLibrary.forEach((book, index) => {
-     if (myLibrary.indexOf(book) == ind) {
-       book.read = book.read === true ? false : true;
-     }
-   });
-   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-
- }
-
- static removeBook(ind) {
-   const myLibrary = Store.getBooks();
-
-   myLibrary.forEach((book, index) => {
-     if (myLibrary.indexOf(book) == ind) {
-       myLibrary.splice(index, 1);
-     }
-   });
-   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
- }
-
-}
-
-
-/// Library scripts
-
-let myLibrary = Store.getBooks();
-
-
-
 
 // The constructor for creating book
 function Book(title, author, pages, read) {
@@ -160,7 +110,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
   }
  })
-
+ 
 
  /// Changing the read status of a book
  document.querySelector('#shelf').addEventListener('click', function(e){
@@ -168,7 +118,3 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
        Store.toggleRead(e.target.previousElementSibling.textContent);
    }
  });
-
-
- // Calls
-document.addEventListener('DOMContentLoaded', render());
