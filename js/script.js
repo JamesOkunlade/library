@@ -1,8 +1,8 @@
 /// Add New Book Modal scripts
 
-var modal = document.querySelector(".modal");
-var trigger = document.querySelector(".trigger");
-var closeButton = document.querySelector(".close-button");
+let modal = document.querySelector(".modal");
+let trigger = document.querySelector(".trigger");
+let closeButton = document.querySelector(".close-button");
 
 function toggleModal() {
     modal.classList.toggle("show-modal");
@@ -93,6 +93,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 document.querySelector('#book-form').addEventListener('submit', function(e)
 {
+
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
   const pages = document.querySelector('#pages').value;
@@ -166,7 +167,6 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
 document.querySelector('#shelf').addEventListener('click', function(e) {
   if (e.target.classList.contains('delete')) {
     e.target.parentElement.parentElement.parentElement.remove();
-    console.log(e.target.parentElement.previousElementSibling.textContent);
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
   }
 })
