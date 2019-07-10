@@ -218,6 +218,7 @@ button {
 	height:60px;
 	bottom:40px;
 	right:40px;
+	background: #fff;
 	border: 3px solid #0c9;
 	color:#0c9;
 	border-radius:50px;
