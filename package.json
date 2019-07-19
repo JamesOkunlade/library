@@ -1,0 +1,23 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "A library app for curating read and unread books.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node_modules/http-server/bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesOkunlade/library.git"
+  },
+  "author": "James Okunlade & Adnan Afsari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesOkunlade/library/issues"
+  },
+  "homepage": "https://github.com/JamesOkunlade/library#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
