@@ -50,7 +50,7 @@
            <div class="form">
              <h5>Add new book</h5>
              <hr>
-             <form id="book-form" method="post">
+             <form id="book-form" method="post" onsubmit="return false">
                <input type="text" name="title" id="title" placeholder="Title" value="">
                <input type="text" name="author" id="author" placeholder="Author" value="">
                <input type="number" name="pages" id="pages" placeholder="Number of pages" value="">
@@ -60,7 +60,7 @@
                  <span class="slider round">Read</span>
                  </label>
                </span>
-               <button type="submit" name="button">Add</button>
+               <button type="submit" name="button" onClick="document.location.reload(true)">Add</button>
              </form>
            </div>
        </div>

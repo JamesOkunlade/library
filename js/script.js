@@ -35,7 +35,7 @@ class Store {
 
   static addBook(book) {
     const myLibrary =  Store.getBooks();
-    myLibrary.unshift(book);
+    myLibrary.push(book);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
@@ -93,7 +93,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 document.querySelector('#book-form').addEventListener('submit', function(e)
 {
-  // e.preventDefault();
+  e.preventDefault();
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
   const pages = document.querySelector('#pages').value;
@@ -129,7 +129,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
                 <div class="hide">
                   <p>${myLibrary.indexOf(book)}</p>
                 </div>
-                <input class="switch" type="checkbox" ${status}>
+                <input class="switch" type="checkbox" ${status} onClick="document.location.reload(true)">
                 <span class="slider round">Read</span>
                 </label>
               </span>
@@ -144,7 +144,7 @@ document.querySelector('#book-form').addEventListener('submit', function(e)
               <p>${myLibrary.indexOf(book)}</p>
             </div>
             <span>
-              <a href="#" class="delete">delete</a>
+              <a href="#" class="delete" onClick="document.location.reload(true)">delete</a>
             </span>
           </div>
         </div>
