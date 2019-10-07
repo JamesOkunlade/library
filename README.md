@@ -30,6 +30,12 @@ Npm (optional to use http-server)
 
 **cd** into the project folder, do `npm i` and start the server by doing `npm start` then open up `localhost:8080` on your browser
 
+## Future improvement
+
+- Change the frontend to React.js
+- Implement reader, so the book can be read from the app
+- Implement PDF download of the books
+
 ## Author
 [James Okunlade](https://github.com/JamesOkunlade)
 
