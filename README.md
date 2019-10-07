@@ -1,10 +1,7 @@
 # Library
 A library app for curating read and unread books.
 
-## Author
-James Okunlade
-
-Adnan Afsari
+![Library](library.png)
 
 ## Technologies
 HTML
@@ -32,3 +29,8 @@ Npm (optional to use http-server)
 #### To user with server
 
 **cd** into the project folder, do `npm i` and start the server by doing `npm start` then open up `localhost:8080` on your browser
+
+## Author
+[James Okunlade](https://github.com/JamesOkunlade)
+
+[Adnan Afsari](https://github.com/AdnanAfsari)
